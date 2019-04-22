@@ -1,0 +1,361 @@
+<!--_meta 作为公共模版分离出去-->
+<!DOCTYPE HTML>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="renderer" content="webkit|ie-comp|ie-stand">
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+<meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1.0,maximum-scale=1.0,user-scalable=no" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+<link rel="Bookmark" href="/favicon.ico" >
+<link rel="Shortcut Icon" href="/favicon.ico" />
+<!--[if lt IE 9]>
+<script type="text/javascript" src="{:config('admin_lib')}/html5shiv.js"></script>
+<script type="text/javascript" src="{:config('admin_lib')}/respond.min.js"></script>
+<![endif]-->
+<link rel="stylesheet" type="text/css" href="{:config('admin_static')}/h-ui/css/H-ui.min.css" />
+<link rel="stylesheet" type="text/css" href="{:config('admin_static')}/h-ui.admin/css/H-ui.admin.css" />
+<link rel="stylesheet" type="text/css" href="{:config('admin_lib')}/Hui-iconfont/1.0.8/iconfont.css" />
+<link rel="stylesheet" type="text/css" href="{:config('admin_static')}/h-ui.admin/skin/default/skin.css" id="skin" />
+<link rel="stylesheet" type="text/css" href="{:config('admin_static')}/h-ui.admin/css/style.css" />
+<script type="text/javascript" src="{:config('admin_lib')}/jquery/1.9.1/jquery.min.js"></script> 
+<!--[if IE 6]>
+<script type="text/javascript" src="{:config('admin_lib')}/DD_belatedPNG_0.0.8a-min.js" ></script>
+<script>DD_belatedPNG.fix('*');</script>
+<![endif]-->
+<!--/meta 作为公共模版分离出去-->
+
+<title>新建网站权限 - 管理员管理 - H-ui.admin v3.1</title>
+<meta name="keywords" content="H-ui.admin v3.1,H-ui网站后台模版,后台模版下载,后台管理系统模版,HTML后台模版下载">
+<meta name="description" content="H-ui.admin v3.1，是一款由国人开发的轻量级扁平化网站后台模板，完全免费开源的网站后台管理系统模版，适合中小型CMS后台系统。">
+</head>
+<body>
+<article class="page-container">
+	<form action="" method="post" class="form form-horizontal" id="form-admin-permission-add">
+		<input type="hidden" id="mg_id" name="mg_id" value="{$info.mg_id}">
+
+		<div class="row cl">
+			<label class="form-label col-xs-4 col-sm-3"><span class="c-red"></span>停车场名称：</label>
+			<div class="formControls col-xs-8 col-sm-9">
+				<input type="text" class="input-text" value="{$info.name}"  name="name">
+			</div>
+		</div>
+
+		<div class="row cl">
+			<label class="form-label col-xs-4 col-sm-3"><span class="c-red"></span>账号：</label>
+			<div class="formControls col-xs-8 col-sm-9">
+				<input type="text" class="input-text" value="{$info.mg_name}"  name="mg_name">
+			</div>
+		</div>
+
+		<div class="row cl">
+			<label class="form-label col-xs-4 col-sm-3"><span class="c-red"></span>收费：</label>
+			<div class="formControls col-xs-8 col-sm-9">
+				<input type="text" class="input-text" value="{$info.charge}"  name="charge">
+			</div>
+		</div>
+
+		<div class="row cl">
+			<label class="form-label col-xs-4 col-sm-3"><span class="c-red"></span>停车场类型：</label>
+			<div class="formControls col-xs-8 col-sm-9">
+				<select name='types' class="input-text" style="width:150px;">
+					{volist name="shuju" id="vv"}
+					<option value='{$vv.type}' {eq name="vv.type" value="$info.types"} selected{/eq}>{$vv.type}</option>
+					{/volist}
+				</select>
+			</div>
+		</div>
+
+		<div class="row cl">
+			<label class="form-label col-xs-4 col-sm-3"><span class="c-red"></span>联系方式：</label>
+			<div class="formControls col-xs-8 col-sm-9">
+				<input type="text" class="input-text" value="{$info.phone}"  name="phone">
+			</div>
+		</div>
+
+		<div class="row cl">
+			<label class="form-label col-xs-4 col-sm-3"><span class="c-red"></span>地址：</label>
+			<div class="formControls col-xs-8 col-sm-9">
+				<div data-toggle="distpicker">
+					<div class="form-group">
+				  		<select data-province="{$info.province}" class="input-text" id='province1' name='province' style='width:150px;'></select>
+				   </div>
+				   <div class="form-group">
+				  		<select data-city="{$info.city}" class="input-text" id='city1' name='city' style='width:150px;'></select>
+				  </div>
+				  <div class="form-group">
+				  		<select data-district="{$info.area}" class="input-text" id='district1' name='area' style='width:150px;'></select>
+				  </div>
+			</div>
+		</div>
+	</div>
+
+		<div class="row cl">
+			<label class="form-label col-xs-4 col-sm-3"><span class="c-red"></span></label>
+			<div class="formControls col-xs-8 col-sm-9">
+				<input type="text" class="input-text addres" placeholder="请填写去除省市区的详细地址" value="{$info.address}"  name="address">
+				<input type="hidden" name="latitude" class="lat" value="{$info.latitude}">
+                <input type="hidden" name="longitude" class="lng" value="{$info.longitude}">
+			</div>
+		</div>
+
+		<div class="row cl">
+			<label class="form-label col-xs-4 col-sm-3"><span class="c-red"></span>总车位：</label>
+			<div class="formControls col-xs-8 col-sm-9">
+				<input type="text" class="input-text" value="{$info.total}"  name="total">
+			</div>
+		</div>
+
+		<div class="row cl">
+			<label class="form-label col-xs-4 col-sm-3"><span class="c-red"></span>剩余车位：</label>
+			<div class="formControls col-xs-8 col-sm-9">
+				<input type="text" class="input-text" value="{$info.leftpos}"  name="leftpos">
+			</div>
+		</div>
+
+		<!-- <div class="row cl">
+			<label class="form-label col-xs-4 col-sm-3"><span class="c-red"></span>设备序列号：</label>
+			<div class="formControls col-xs-8 col-sm-9">
+				<input type="text" class="input-text" value="{$info.serialno}"  name="serialno">
+			</div>
+		</div> -->
+
+		<script src="{:config('plugin')}uploadify/jquery.uploadify.min.js" type="text/javascript"></script>
+				<link rel="stylesheet" type="text/css" href="{:config('plugin')}uploadify/uploadify.css">
+				<div class="row cl">
+					<label class="form-label col-xs-4 col-sm-3">停车场图片：</label>
+					<div class="formControls col-xs-8 col-sm-9">
+						<input type="file" id="logo1" name="logo1" />{/*uploadify使用的*/}
+						{/*form表单使用，用于添加数据到mysql用的*/}
+						<input type="hidden" id="logo" name="logo" value="{$info.logo}"/>
+					</div>
+					<label class="form-label col-xs-4 col-sm-3"></label>
+					<div class="formControls col-xs-8 col-sm-9">
+						{/*显示上传完毕的图片*/}
+						<img src="{:substr($info.logo,1)}" alt="" width="200" height="100" id="logo_show" />
+					</div>
+				</div>
+				<script type="text/javascript">
+                    <?php $timestamp = time();?>
+                    $(function() {
+                        $('#logo1').uploadify({
+                        	'buttonText':'选择图片',
+							//不允许"一次性"上传多张图片
+                            'multi':false,
+                            'formData'     : {
+                                'timestamp' : '<?php echo $timestamp;?>',
+                                'token'     : '<?php echo md5('unique_salt' . $timestamp);?>'
+                            },
+                            'swf'      : '/plugin/uploadify/uploadify.swf',
+                            'uploader' : '{:url("admin/manager/logo_up")}',
+
+                            'onUploadSuccess' : function(file, data, response) {
+                                //file.name: 被上传附件的名字
+                                //data:		是服务器端返回的json字符串信息
+                                //response: true
+                                
+                                var obj = JSON.parse(data); //把json字符串变为object对象形式
+                                //① 把上传好的图片显示出来
+                                //substring(1),是把图片路径名的第一个"点"给去除
+
+                                $('#logo_show').attr('src',obj.logopathname.substring(1));
+                                //② 把附件路径名设置给id=logo的隐藏域中
+                                $('#logo').val(obj.logopathname);
+                            }
+                        });
+                    });
+                    /*
+                        formData      上传表单维护的必要数据(timestamp和token)
+                        uploadify.swf 类似播放器
+                        uploadify.php 上传附件服务器端处理的php脚本
+                        onUploadSuccess 附件成功上传的回调函数
+                     */
+				</script>
+
+
+			</div>
+
+			<script src="{:config('plugin')}uploadify/jquery.uploadify.min.js" type="text/javascript"></script>
+				<link rel="stylesheet" type="text/css" href="{:config('plugin')}uploadify/uploadify.css">
+				<div class="row cl">
+					<label class="form-label col-xs-4 col-sm-3">轮播图：</label>
+					<div class="formControls col-xs-8 col-sm-9">
+						<input type="file" id="pics" name="pics" />{/*uploadify使用的*/}
+						{/*form表单使用，用于添加数据到mysql用的*/}
+					</div>
+					<div class="formControls col-xs-8 col-sm-9" style="width:700px;margin-left:190px;"
+						 id="pics_show">
+						 <style type="text/css">
+							.apple .pear{width:120px;height:120px;margin:5px 5px 0 0;float:left;}
+						</style>
+						<ul id="pics_ul" class="apple">
+							{volist name="picsinfo" id="v"}
+								<li id="pics_li_{$v.id}" class="pear">
+									<img src="{:substr($v.pics_mid,1)}" alt="" width="100" height="100" />
+									<span style="color:red;cursor:pointer;" title="删除图片" onclick="del_pics(this,'{$v.id}')">[-]</span>
+								</li>
+							{/volist}
+						</ul>
+					</div>
+				</div>
+				<script type="text/javascript">
+                    <?php $timestamp = time();?>
+                    $(function() {
+                        $('#pics').uploadify({
+                        	'buttonText':'选择图片',
+                        	'multi':true,
+                            'formData'     : {
+                                'timestamp' : '<?php echo $timestamp;?>',
+                                'token'     : '<?php echo md5('unique_salt' . $timestamp);?>'
+                            },
+                            'swf'      : '/plugin/uploadify/uploadify.swf',
+                            'uploader' : '{:url("admin/manager/pics_up")}',
+
+                            'onUploadSuccess' : function(file, data, response) {
+
+                                //file.name: 被上传附件的名字
+                                //data:		是服务器端返回的json字符串信息
+                                //response: true
+                                //var obj = JSON.parse(data); //把json字符串变为object对象形式
+
+                                var obj=JSON.parse(data);
+                                //① 把上传好的相册获取到
+                                //substring(1),是把图片路径名的第一个"点"给去除
+                              var im="<img src='"+obj.midpathname.substring(1)+"'width='140' height='140' style='margin:5px 5px 0 0;'>";
+                            $('#pics_show').append(im);
+
+                                //把相册对应的隐藏域区域制作出来并追加
+								var itmid="<input type='hidden' name='pics_mid[]' value='"+obj.midpathname+"' />";
+								$('#pics_show').append(itmid);
+                            }
+                        });
+                    });
+				</script>
+				<script type="text/javascript">
+				function del_pics(obj,pics_id){
+				    if(window.confirm('确认要删除该相册图片吗?')){
+				        $.ajax({
+							url:"{:url('admin/manager/delpics')}",
+							data:{pics_id:pics_id},
+							dataType:'json',
+							type:'post',
+							success:function(msg){
+								if(msg.status=="success"){
+								    $(obj).parents('li').remove();
+								}
+							}
+						})
+					}
+				}
+			</script>
+			</div>
+
+		
+
+		<div class="row cl">
+			<div class="col-xs-8 col-sm-9 col-xs-offset-4 col-sm-offset-3">
+				<button type="submit" class="btn btn-success radius" id="admin-permission-save" name="admin-permission-save"><i class="icon-ok"></i> 确定</button>
+			</div>
+		</div>
+	</form>
+	<div id="allmap" style="width: 0px; height: 0px"></div>
+</article>
+
+<!--_footer 作为公共模版分离出去-->
+
+<script type="text/javascript" src="{:config('admin_lib')}/layer/2.4/layer.js"></script>
+<script type="text/javascript" src="{:config('admin_static')}/h-ui/js/H-ui.min.js"></script> 
+<script type="text/javascript" src="{:config('admin_static')}/h-ui.admin/js/H-ui.admin.js"></script> <!--/_footer 作为公共模版分离出去-->
+<script src="{:config('plugin')}jQueryDistpicker/js/distpicker.data.js"></script>
+<script src="{:config('plugin')}jQueryDistpicker/js/distpicker.js"></script>
+<script src="{:config('plugin')}jQueryDistpicker/js/main.js"></script>
+<!--请在下方写此页面业务相关的脚本-->
+<script type="text/javascript" src="{:config('admin_lib')}/jquery.validation/1.14.0/jquery.validate.js"></script>
+<script type="text/javascript" src="{:config('admin_lib')}/jquery.validation/1.14.0/validate-methods.js"></script>
+<script type="text/javascript" src="{:config('admin_lib')}/jquery.validation/1.14.0/messages_zh.js"></script>
+<script type="text/javascript" src="http://api.map.baidu.com/api?v=2.0&ak=iVsocq0MFUOHMBI0Wqh4ofsGQU6apKVH"></script>
+<script type="text/javascript">
+$(function(){
+	$(".permission-list dt input:checkbox").click(function(){
+		$(this).closest("dl").find("dd input:checkbox").prop("checked",$(this).prop("checked"));
+	});
+	$(".permission-list2 dd input:checkbox").click(function(){
+		var l =$(this).parent().parent().find("input:checked").length;
+		var l2=$(this).parents(".permission-list").find(".permission-list2 dd").find("input:checked").length;
+		if($(this).prop("checked")){
+			$(this).closest("dl").find("dt input:checkbox").prop("checked",true);
+			$(this).parents(".permission-list").find("dt").first().find("input:checkbox").prop("checked",true);
+		}
+		else{
+			if(l==0){
+				$(this).closest("dl").find("dt input:checkbox").prop("checked",false);
+			}
+			if(l2==0){
+				$(this).parents(".permission-list").find("dt").first().find("input:checkbox").prop("checked",false);
+			}
+		}
+	});
+
+	 //获取经纬度
+   $('.addres').change(function(){
+   		var province=$('#province1').val();
+   		var city=$('#city1').val();
+   		var area=$('#district1').val();
+        var addres = $('.addres').val();
+        addres=province+city+area+addres;
+
+         var map = new BMap.Map("allmap");
+          map.centerAndZoom(addres,12);//// 初始化地图,设置城市和地图级别
+          // 创建地址解析器实例
+          var myGeo = new BMap.Geocoder();
+          // 将地址解析结果显示在地图上,并调整地图视野
+          myGeo.getPoint(addres, function(point){
+            if (point) {
+              map.centerAndZoom(point, 16);
+                    var latitude = point.lat;
+                    var longitude = point.lng;
+                    $('.lat').val(latitude);
+                    $('.lng').val(longitude);
+                    layer.msg("地址解析成功!");
+              map.addOverlay(new BMap.Marker(point));
+            }else{
+              layer.msg("您选择地址没有解析到结果!");
+            }
+          }, "上海");
+        })
+
+
+	//form表单通过Ajax无刷新方式提交数据给服务器端
+	$('#form-admin-permission-add').submit(function(evt){
+	    //阻止浏览器默认的form表单提交
+		evt.preventDefault();
+		//收集form表单的信息,下述serialize()收集的信息传递给服务器端的时候与传统form表单提交的效果一致
+		var shuju = $(this).serialize();  //字符串  name=val&name=val&name=val...
+
+		//var manager=$('#manager').val();alert(manager)
+		//走Ajax
+		$.ajax({
+			url:'{:url("admin/manager/edit")}',
+			data:shuju,
+			dataType:'json',
+			type:'post',
+			success:function(msg){
+				//console.log(msg.status);
+                if(msg.status=='success'){
+                    layer.alert('修改成功', {icon: 6},function(){
+                        //主页面刷新
+                        parent.window.location.href='{:url("admin/manager/index")}?province='+msg.province+'&city='+msg.city+'&area='+msg.area;
+                        //当前窗口关闭
+                        layer_close();//本身的H-ui.admin.js封装的
+                    });
+                }else{
+                    layer.alert('添加失败，【'+msg.errorinfo+'】', {icon: 5});
+                }
+			}
+		});
+	});
+});
+</script>
+<!--/请在上方写此页面业务相关的脚本-->
+</body>
+</html>

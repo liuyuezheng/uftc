@@ -1,0 +1,426 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta name="renderer" content="webkit|ie-comp|ie-stand">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1.0,maximum-scale=1.0,user-scalable=no" />
+    <meta http-equiv="Cache-Control" content="no-siteapp" />
+    <!--[if lt IE 9]>
+    <script type="text/javascript" src="{:config('admin_lib')}/html5shiv.js"></script>
+    <script type="text/javascript" src="{:config('admin_lib')}/respond.min.js"></script>
+    <![endif]-->
+    <link rel="stylesheet" type="text/css" href="{:config('admin_static')}/h-ui/css/H-ui.min.css" />
+    <link rel="stylesheet" type="text/css" href="{:config('admin_static')}/h-ui.admin/css/H-ui.admin.css" />
+    <link rel="stylesheet" type="text/css" href="{:config('admin_lib')}/Hui-iconfont/1.0.8/iconfont.css" />
+    <link rel="stylesheet" type="text/css" href="{:config('admin_static')}/h-ui.admin/skin/default/skin.css" id="skin" />
+    <link rel="stylesheet" type="text/css" href="{:config('admin_static')}/h-ui.admin/css/style.css" />
+    <!--[if IE 6]>
+    <script type="text/javascript" src="{:config('admin_lib')}/DD_belatedPNG_0.0.8a-min.js" ></script>
+    <script>DD_belatedPNG.fix('*');</script>
+    <![endif]-->
+
+    <!--_footer 作为公共模版分离出去-->
+    <script type="text/javascript" src="{:config('admin_lib')}/jquery/1.9.1/jquery.min.js"></script>
+    <script type="text/javascript" src="{:config('admin_lib')}/layer/2.4/layer.js"></script>
+    <script type="text/javascript" src="{:config('admin_static')}/h-ui/js/H-ui.min.js"></script>
+    <script type="text/javascript" src="{:config('admin_static')}/h-ui.admin/js/H-ui.admin.js"></script>
+    <!--/_footer 作为公共模版分离出去-->
+
+
+
+    <!--请在下方写此页面业务相关的脚本-->
+    <script type="text/javascript" src="{:config('admin_lib')}/My97DatePicker/4.8/WdatePicker.js"></script>
+    <script type="text/javascript" src="{:config('admin_lib')}/datatables/1.10.0/jquery.dataTables.min.js"></script>
+    <script type="text/javascript" src="{:config('admin_lib')}/laypage/1.2/laypage.js"></script>
+	<title>新建网站管理员 - 管理员管理 - H-ui.admin v3.1</title>
+	<meta name="keywords" content="H-ui.admin v3.1,H-ui网站后台模版,后台模版下载,后台管理系统模版,HTML后台模版下载">
+	<meta name="description" content="H-ui.admin v3.1，是一款由国人开发的轻量级扁平化网站后台模板，完全免费开源的网站后台管理系统模版，适合中小型CMS后台系统。">
+</head>
+<body>
+<article class="page-container">
+	<form action="" method="post" class="form form-horizontal" id="form-admin-role-add">
+        
+		<div class="row cl">
+			<label class="form-label col-xs-4 col-sm-3"><span class="c-red"></span>车位号：</label>
+			<div class="formControls col-xs-8 col-sm-9">
+				<input type="text" class="input-text" value=""  name="number">
+			</div>
+		</div>
+
+        {eq name="data.mg_name" value="admin"}
+       <div class="row cl">
+            <label class="form-label col-xs-4 col-sm-3"><span class="c-red"></span>所属车场：</label>
+            <div class="formControls col-xs-8 col-sm-9">
+                <div data-toggle="distpicker">
+                    <div class="form-group">
+                        <select data-province="" class="input-text" id='province1' name='province' style='width:150px;'></select>
+                   </div>
+                   <div class="form-group">
+                        <select data-city="" class="input-text" id='city1' name='city' style='width:150px;'></select>
+                  </div>
+                  <div class="form-group">
+                        <select data-district="" class="input-text" id='district1' name='area' style='width:150px;'></select>
+                  </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="row cl">
+            <label class="form-label col-xs-4 col-sm-3"><span class="c-red"></span></label>
+            <div class="formControls col-xs-8 col-sm-9">
+               <select class="form-control" class="input-text" style='width:150px;height:31px;' id="manager" name="mg_id">
+                            
+                        </select>
+            </div>
+        </div>
+    {/eq}
+
+        <div class="row cl">
+            <label class="form-label col-xs-4 col-sm-3"><span class="c-red"></span>车位类型：</label>
+            <div class="formControls col-xs-8 col-sm-9">
+                <input type="radio" value="2" name="types">出租</input>
+                <input type="radio" value='4' style="margin-left:10px;" name='types'>临时</input>
+                
+            </div>
+        </div>
+        <div class="row cl del3">
+            <label class="form-label col-xs-4 col-sm-3"><span class="c-red"></span>车位状态：</label>
+            <div class="formControls col-xs-8 col-sm-9">
+                <input type="radio" value="1" name="type">维护中</input>
+                <input type="radio" value='2' style="margin-left:10px;" name='type'>租赁中</input>
+                <input type="radio" value='3' style="margin-left:10px;" name='type'>停车中</input>
+                <input type="radio" value='4' style="margin-left:10px;" name='type'>空置中</input>
+            </div>
+        </div>
+        <div class="row cl del2">
+            <label class="form-label col-xs-4 col-sm-3"><span class="c-red"></span>车位状态：</label>
+            <div class="formControls col-xs-8 col-sm-9">
+                <input type="radio" value="1" name="type">维护中</input>
+                <!--<input type="radio" value='2' style="margin-left:10px;" name='type'  checked="checked">发布出租</input>-->
+                <input type="radio" value='3' style="margin-left:10px;" name='type'>停车中</input>
+                <input type="radio" value='4' style="margin-left:10px;" name='type'>空置中</input>
+            </div>
+        </div>
+        <div class="row cl del1">
+            <label class="form-label col-xs-4 col-sm-3"><span class="c-red"></span>车位状态：</label>
+            <div class="formControls col-xs-8 col-sm-9">
+                <!--<input type="radio" value="1" name="type">维护中</input>-->
+                <input type="radio" value='2' style="margin-left:10px;" name='type'  checked="checked">租赁中</input>
+                <!--<input type="radio" value='3' style="margin-left:10px;" name='type'>停车中</input>-->
+                <!--<input type="radio" value='4' style="margin-left:10px;" name='type'>空置中</input>-->
+            </div>
+        </div>
+        <script>
+            $('.del3').css('display','block');
+            $('.del').css('display','none');
+            $('.del2').css('display','none');
+            $('.del1').css('display','none');
+            $("input[name='types']").change(function(){
+                var types=$("input[name='types']:checked").val();
+                if(types==2){
+                    $('.del').css('display','block');
+                    $('.del1').css('display','block');
+                    $('.del2').css('display','none');
+                    $('.del3').css('display','none');
+                }else{
+                    $('.del').css('display','none');
+                    $('.del2').css('display','block');
+                    $('.del1').css('display','none');
+                    $('.del3').css('display','none');
+                }
+            })
+        </script>
+        <div class="row cl del">
+            <label class="form-label col-xs-4 col-sm-3"><span class="c-red"></span>出租时间：</label>
+            <div class="formControls col-xs-8 col-sm-9">
+                <input type="text" placeholder="" id="start_time" name="start_time" class="input-text" readonly="readonly" style="width:150px;"/>
+                <input type="text" placeholder="" id="end_time" name="end_time"
+     class="input-text"  readonly="readonly" style="width:150px;"/>
+            </div>
+        </div>
+
+         <div class="row cl del">
+            <label class="form-label col-xs-4 col-sm-3"><span class="c-red"></span>收费标准：</label>
+            <div class="formControls col-xs-8 col-sm-9">
+                <input type="text" class="input-text" value=""  name="charge">
+            </div>
+        </div>
+        <script src="{:config('plugin')}uploadify/jquery.uploadify.min.js" type="text/javascript"></script>
+                <link rel="stylesheet" type="text/css" href="{:config('plugin')}uploadify/uploadify.css">
+                <div class="row cl">
+                    <label class="form-label col-xs-4 col-sm-3">车位图：</label>
+                    <div class="formControls col-xs-8 col-sm-9">
+                        <input type="file" id="logos" name="logos" />{/*uploadify使用的*/}
+                        {/*form表单使用，用于添加数据到mysql用的*/}
+                        <input type="hidden" id="logo" name="logo" value=""/>
+                    </div>
+                    <label class="form-label col-xs-4 col-sm-3"></label>
+                    <div class="formControls col-xs-8 col-sm-9">
+                        {/*显示上传完毕的图片*/}
+                        <img src="" alt="" width="200" height="100" id="logo_show" />
+                    </div>
+                </div>
+                <script type="text/javascript">
+                    <?php $timestamp = time();?>
+                    $(function() {
+                        $('#logos').uploadify({
+                            'buttonText':'选择图片',
+                            //不允许"一次性"上传多张图片
+                            'multi':false,
+                            'formData'     : {
+                                'timestamp' : '<?php echo $timestamp;?>',
+                                'token'     : '<?php echo md5('unique_salt' . $timestamp);?>'
+                            },
+                            'swf'      : '/plugin/uploadify/uploadify.swf',
+                            'uploader' : '{:url("admin/manager/logo_up")}',
+
+                            'onUploadSuccess' : function(file, data, response) {
+                                //file.name: 被上传附件的名字
+                                //data:     是服务器端返回的json字符串信息
+                                //response: true
+
+                                var obj = JSON.parse(data); //把json字符串变为object对象形式
+                                //① 把上传好的图片显示出来
+                                //substring(1),是把图片路径名的第一个"点"给去除
+
+                                $('#logo_show').attr('src',obj.logopathname.substring(1));
+                                //② 把附件路径名设置给id=goods_logo的隐藏域中
+                                $('#logo').val(obj.logopathname);
+                            }
+                        });
+                    });
+                    /*
+                        formData      上传表单维护的必要数据(timestamp和token)
+                        uploadify.swf 类似播放器
+                        uploadify.php 上传附件服务器端处理的php脚本
+                        onUploadSuccess 附件成功上传的回调函数
+                     */
+                </script>
+
+
+            </div>
+		<div class="row cl">
+			<div class="col-xs-8 col-sm-9 col-xs-offset-4 col-sm-offset-3">
+				<button type="submit" class="btn btn-success radius" id="admin-role-save" name="admin-role-save"><i class="icon-ok"></i> 确定</button>
+			</div>
+		</div>
+	</form>
+</article>
+
+<script type="text/javascript" src="{:config('plugin')}jedate/jquery.jedate.js"></script>
+                <link type="text/css" rel="stylesheet" href="{:config('plugin')}jedate/skin/jedate.css">
+                <script type="text/javascript">
+
+                    //实现日期选择联动
+                    var start ={
+                        isinitVal:false,//在input框中显示初始时间信息
+                        //festival:true,
+                        ishmsVal:true,//是否允许手动修改时分秒
+                        //minDate: $.nowDate({DD:0}),//设置当前事件为可选取的开始时间
+                        maxDate: '2099-12-31',//设置结束时间
+                        format:"YYYY-MM-DD",//时间显示的格式
+                        zIndex:3000,//设置时间弹框在页面最上面显示
+                        choosefun: function(elem,datas){
+                            end.minDate = datas; //开始日选好后，重置结束日的最小日期
+                            endDates();
+                        },
+                    }
+
+                    function endDates() {
+                        end.trigger = false;
+                        $("#inpend").jeDate(end);
+                    }
+
+                    var end ={
+                        isinitVal:false,
+                        //festival:true,
+                        ishmsVal:true,//是否允许手动修改时分秒
+                        minDate: $.nowDate({DD:0}),
+                        maxDate: '2099-12-31 23:59:59',
+                        format:"YYYY-MM-DD",
+                        zIndex:3000,
+                        choosefun: function(elem,datas){
+                            start.maxDate = datas; //将结束日的初始值设定为开始日的最大日期
+                        }
+                    }
+
+                    //设置开始时间
+                    $("#start_time").jeDate(start);
+
+                    //设置结束时间
+                    $("#end_time").jeDate(end);
+                </script>
+<script src="{:config('plugin')}jQueryDistpicker/js/distpicker.data.js"></script>
+<script src="{:config('plugin')}jQueryDistpicker/js/distpicker.js"></script>
+<script src="{:config('plugin')}jQueryDistpicker/js/main.js"></script>
+<script type="text/javascript">
+    $(function(){
+         var province=$('#province1').val();
+        var city=$('#city1').val();
+        var district=$('#district1').val();
+        var manager=$('#manager').val();
+        var html='';
+        $.ajax({
+            type: 'POST',
+            url: '{:url("admin/user/getscc")}',
+            dataType: 'json',
+            data:{province:province,city:city,district:district,manager:manager},
+            success: function(data){
+                //var xx = $('#xx').val();
+                for(i=0;i<data.data.length;i++){
+                   /* if(xx==data.data[i].mg_id){
+                        html+='<option selected value="'+data.data[i].mg_id+'">'+data.data[i].name+'</option>';
+                    }else{*/
+                        html+='<option value="'+data.data[i].mg_id+'">'+data.data[i].name+'</option>';
+                   /* }
+                    */
+                }
+                console.log(html);
+                $('#manager').html(html);
+            }
+        });
+        });
+</script>
+
+<!-- <script>
+    $('#start_time').change(function(){
+        alert(1);
+    })
+</script> -->
+
+
+<script type="text/javascript">
+
+       $('#district1').change(function(){
+        var province=$('#province1').val();
+        var city=$('#city1').val();
+        var district=$('#district1').val();
+        var manager=$('#manager').val();
+        var html='';
+        $.ajax({
+            type: 'POST',
+            url: '{:url("admin/user/getscc")}',
+            dataType: 'json',
+            data:{province:province,city:city,district:district,manager:manager},
+            success: function(data){
+                //var xx = $('#xx').val();
+                for(i=0;i<data.data.length;i++){
+                   /* if(xx==data.data[i].mg_id){
+                        html+='<option selected value="'+data.data[i].mg_id+'">'+data.data[i].name+'</option>';
+                    }else{*/
+                        html+='<option value="'+data.data[i].mg_id+'">'+data.data[i].name+'</option>';
+                   /* }
+                    */
+                }
+                console.log(html);
+                $('#manager').html(html);
+            }
+        });
+    })
+
+       $('#city1').change(function(){
+        var province=$('#province1').val();
+        var city=$('#city1').val();
+        var district=$('#district1').val();
+        var manager=$('#manager').val();
+        var html='';
+        $.ajax({
+            type: 'POST',
+            url: '{:url("admin/sensor/getsc")}',
+            dataType: 'json',
+            data:{province:province,city:city,district:district,manager:manager},
+            success: function(data){
+               
+                for(i=0;i<data.data.length;i++){
+                        html+='<option value="'+data.data[i].mg_id+'">'+data.data[i].name+'</option>';
+                }
+                //console.log(html);
+                $('#manager').html(html);
+                var htm='';
+                var mm=$('#manager').val();
+                $.ajax({
+                    type: 'POST',
+                    url: '{:url("admin/sensor/getcarpos")}',
+                    dataType: 'json',
+                    data:{manager:mm},
+                    success: function(data){
+                       
+                        for(i=0;i<data.data.length;i++){
+                                htm+='<option value="'+data.data[i].id+'">'+data.data[i].number+'</option>';
+                        }
+                        //console.log(html);
+                        $('#carpos').html(htm);
+                    }
+                });
+            }
+        });
+    })
+
+       $('#province1').change(function(){
+        var province=$('#province1').val();
+        var city=$('#city1').val();
+        var district=$('#district1').val();
+        var manager=$('#manager').val();
+        var html='';
+        $.ajax({
+            type: 'POST',
+            url: '{:url("admin/sensor/gets")}',
+            dataType: 'json',
+            data:{province:province,city:city,district:district,manager:manager},
+            success: function(data){
+               
+                for(i=0;i<data.data.length;i++){
+                        html+='<option value="'+data.data[i].mg_id+'">'+data.data[i].name+'</option>';
+                }
+                //console.log(html);
+                $('#manager').html(html);
+                var htm='';
+                var mm=$('#manager').val();
+                $.ajax({
+                    type: 'POST',
+                    url: '{:url("admin/sensor/getcarpos")}',
+                    dataType: 'json',
+                    data:{manager:mm},
+                    success: function(data){
+                       
+                        for(i=0;i<data.data.length;i++){
+                                htm+='<option value="'+data.data[i].id+'">'+data.data[i].number+'</option>';
+                        }
+                        //console.log(html);
+                        $('#carpos').html(htm);
+                    }
+                });
+            }
+        });
+    })
+
+
+        //form表单通过Ajax无刷新方式提交数据给服务器端
+        $('#form-admin-role-add').submit(function(evt){
+            evt.preventDefault();
+            var shuju = $(this).serialize();
+//            console.log(shuju);
+            $.ajax({
+                url:'{$Request.url}',
+                data:shuju,
+                dataType:'json',
+                type:'post',
+                success:function(msg){
+                    if(msg.status=='success'){
+                        layer.alert('添加成功', {icon: 6},function(){
+                            //主页面刷新
+                            parent.window.location.href='{:url("admin/carposs/lists")}?province='+msg.province+'&city='+msg.city+'&area='+msg.area+'&manager='+msg.manager;
+                            //当前窗口关闭
+                            layer_close();
+                        });
+                    }else{
+                        layer.alert('添加失败，【'+msg.errorinfo+'】', {icon: 5});
+                    }
+                }
+            });
+        });
+</script>
+<!--/请在上方写此页面业务相关的脚本-->
+    </body>
+</html>

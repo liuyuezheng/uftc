@@ -1,0 +1,48 @@
+<table class="table table-border table-bordered table-hover table-bg table-sort">
+    <thead>
+    <tr class="text-c">
+        <th width="100">节目名称</th>
+        <th width="100">姓名</th>
+        <th width="100">奖项</th>
+        <th width="100">时间</th>
+
+    </tr>
+    </thead>
+    <tbody>
+    {volist name="list" id="val" }
+    <tr class="text-c">
+        <td>{$val.proName}</td>
+        <td>{$val.name}</td>
+        <td>{$val.awardName}</td>
+        <td>{$val.create_time}</td>
+    </tr>
+    {/volist}
+    </tbody>
+
+    <thead>
+    <tr class="text-c">
+        <th width="100">节目名称</th>
+        <th width="100">票数</th>
+        <th width="100">奖项</th>
+
+
+    </tr>
+    </thead>
+    <tbody>
+    <tr class="text-c">
+        <td>最佳创意奖</td>
+        <td>{$chuangyiNum}</td>
+        <td>{$chuangyi}</td>
+    </tr>
+    <tr class="text-c">
+        <td>最佳表演奖</td>
+        <td>{$biaoyanNum}</td>
+        <td>{$biaoyan}</td>
+    </tr>
+    <tr class="text-c">
+        <td>最佳人气奖</td>
+        <td>{$renqiNum}</td>
+        <td>{$renqi}</td>
+    </tr>
+    </tbody>
+</table>

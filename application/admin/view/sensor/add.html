@@ -1,0 +1,364 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta name="renderer" content="webkit|ie-comp|ie-stand">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1.0,maximum-scale=1.0,user-scalable=no" />
+    <meta http-equiv="Cache-Control" content="no-siteapp" />
+    <!--[if lt IE 9]>
+    <script type="text/javascript" src="{:config('admin_lib')}/html5shiv.js"></script>
+    <script type="text/javascript" src="{:config('admin_lib')}/respond.min.js"></script>
+    <![endif]-->
+    <link rel="stylesheet" type="text/css" href="{:config('admin_static')}/h-ui/css/H-ui.min.css" />
+    <link rel="stylesheet" type="text/css" href="{:config('admin_static')}/h-ui.admin/css/H-ui.admin.css" />
+    <link rel="stylesheet" type="text/css" href="{:config('admin_lib')}/Hui-iconfont/1.0.8/iconfont.css" />
+    <link rel="stylesheet" type="text/css" href="{:config('admin_static')}/h-ui.admin/skin/default/skin.css" id="skin" />
+    <link rel="stylesheet" type="text/css" href="{:config('admin_static')}/h-ui.admin/css/style.css" />
+    <!--[if IE 6]>
+    <script type="text/javascript" src="{:config('admin_lib')}/DD_belatedPNG_0.0.8a-min.js" ></script>
+    <script>DD_belatedPNG.fix('*');</script>
+    <![endif]-->
+
+    <!--_footer 作为公共模版分离出去-->
+    <script type="text/javascript" src="{:config('admin_lib')}/jquery/1.9.1/jquery.min.js"></script>
+    <script type="text/javascript" src="{:config('admin_lib')}/layer/2.4/layer.js"></script>
+    <script type="text/javascript" src="{:config('admin_static')}/h-ui/js/H-ui.min.js"></script>
+    <script type="text/javascript" src="{:config('admin_static')}/h-ui.admin/js/H-ui.admin.js"></script>
+    <!--/_footer 作为公共模版分离出去-->
+
+
+
+    <!--请在下方写此页面业务相关的脚本-->
+    <script type="text/javascript" src="{:config('admin_lib')}/My97DatePicker/4.8/WdatePicker.js"></script>
+    <script type="text/javascript" src="{:config('admin_lib')}/datatables/1.10.0/jquery.dataTables.min.js"></script>
+    <script type="text/javascript" src="{:config('admin_lib')}/laypage/1.2/laypage.js"></script>
+	<title>新建网站管理员 - 管理员管理 - H-ui.admin v3.1</title>
+	<meta name="keywords" content="H-ui.admin v3.1,H-ui网站后台模版,后台模版下载,后台管理系统模版,HTML后台模版下载">
+	<meta name="description" content="H-ui.admin v3.1，是一款由国人开发的轻量级扁平化网站后台模板，完全免费开源的网站后台管理系统模版，适合中小型CMS后台系统。">
+</head>
+<body>
+<article class="page-container">
+	<form action="" method="post" class="form form-horizontal" id="form-admin-role-add">
+        <input type="hidden" name='mg_id' value="{$data.mg_id}" id="mgid">
+		<div class="row cl">
+			<label class="form-label col-xs-4 col-sm-3"><span class="c-red"></span>传感器序列号：</label>
+			<div class="formControls col-xs-8 col-sm-9">
+				<input type="text" class="input-text" value=""  name="serialno">
+			</div>
+		</div>
+
+    {eq name="data.mg_name" value='admin'}
+       <div class="row cl">
+            <label class="form-label col-xs-4 col-sm-3"><span class="c-red"></span>所属车场车位：</label>
+            <div class="formControls col-xs-8 col-sm-9">
+                <div data-toggle="distpicker">
+                    <div class="form-group">
+                        <select data-province="" class="input-text" id='province1' name='province' style='width:150px;'></select>
+                   </div>
+                   <div class="form-group">
+                        <select data-city="" class="input-text" id='city1' name='city' style='width:150px;'></select>
+                  </div>
+                  <div class="form-group">
+                        <select data-district="" class="input-text" id='district1' name='area' style='width:150px;'></select>
+                  </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="row cl">
+            <label class="form-label col-xs-4 col-sm-3"><span class="c-red"></span></label>
+            <div class="formControls col-xs-8 col-sm-9">
+               <select class="form-control" class="input-text" style='width:150px;height:31px;' id="manager" name="mg_id">
+               </select>
+               <select class="form-control" class="input-text" style='width:150px;height:31px;' id="carpos" name="cid">
+               </select>
+            </div>
+        </div>
+    {else /}
+    <div class="row cl">
+            <label class="form-label col-xs-4 col-sm-3"><span class="c-red"></span>所属车位：</label>
+            <div class="formControls col-xs-8 col-sm-9">
+               <select class="form-control" class="input-text" style='width:150px;height:31px;' id="carpos" name="cid">
+               </select>
+            </div>
+        </div>
+    {/eq}
+
+		<div class="row cl">
+			<div class="col-xs-8 col-sm-9 col-xs-offset-4 col-sm-offset-3">
+				<button type="submit" class="btn btn-success radius" id="admin-role-save" name="admin-role-save"><i class="icon-ok"></i> 确定</button>
+			</div>
+		</div>
+	</form>
+</article>
+
+<style type="text/css">
+    #container {
+        width: 500px;
+       /* text-align: center;
+        margin: 0 auto;*/
+        font-family: "微软雅黑";
+        margin-top: 5px;
+    }
+    .selectContainer {
+        position: relative;
+    }
+    .selectInput {
+        width: 145px;
+        height: 25px;
+        border-style: none;
+        border: 1px solid #999;
+        border-radius: 3px;
+        padding: 0 3px;
+    }
+    .picture_click {
+        background: url(http://sandbox.runjs.cn/uploads/rs/382/gzpur0hb/select-default.png) no-repeat; 
+        opacity: 1; 
+        width: 15px; 
+        height: 8px;
+        position: absolute;
+        top: 10px;
+        right: 355px;
+    }
+    .picture_click:hover {
+        background-image: url(http://sandbox.runjs.cn/uploads/rs/382/gzpur0hb/select-hover.png);
+    }
+    .selectList {
+        width: 150px;
+        height: 120px;
+        overflow-y: scroll;
+        text-align: left;
+        margin: 0;
+        border: 1px solid #999;
+        display: none;
+        position: relative;
+    }
+    .selectList div {
+        cursor: pointer;
+    }
+</style>
+<script src="{:config('plugin')}jQueryDistpicker/js/distpicker.data.js"></script>
+<script src="{:config('plugin')}jQueryDistpicker/js/distpicker.js"></script>
+<script src="{:config('plugin')}jQueryDistpicker/js/main.js"></script>
+<script type="text/javascript">
+    $(function(){
+        var manager=$('#mgid').val();
+        if(manager==1){
+            var province=$('#province1').val();
+        var city=$('#city1').val();
+        var district=$('#district1').val();
+        var manager=$('#manager').val();
+        var html='';
+        $.ajax({
+            type: 'POST',
+            url: '{:url("admin/user/getscc")}',
+            dataType: 'json',
+            data:{province:province,city:city,district:district,manager:manager},
+            success: function(data){
+                for(i=0;i<data.data.length;i++){
+                        html+='<option  value="'+data.data[i].mg_id+'">'+data.data[i].name+'</option>';
+                }
+                $('#manager').html(html);
+                var htm='';
+                var mm=$('#manager').val();
+                $.ajax({
+                    type: 'POST',
+                    url: '{:url("admin/sensor/getcarpos")}',
+                    dataType: 'json',
+                    data:{manager:mm},
+                    success: function(data){
+                        for(i=0;i<data.data.length;i++){
+                                htm+='<option value="'+data.data[i].id+'">'+data.data[i].number+'</option>';
+                        }
+                        $('#carpos').html(htm);
+                    }
+                });
+            }
+        });
+    }else{
+        var html='';
+        $.ajax({
+            type: 'POST',
+            url: '{:url("admin/sensor/getcarpos")}',
+            dataType: 'json',
+            data:{manager:manager},
+            success: function(data){
+                for(i=0;i<data.data.length;i++){
+                    html+='<option  value="'+data.data[i].id+'">'+data.data[i].number+'</option>';
+                }
+                $('#carpos').html(html);
+            }
+        });
+    }
+        
+});
+</script>
+
+<script type="text/javascript">
+
+       $('#manager').change(function(){
+        var manager=$('#manager').val();
+        var html='';
+        $.ajax({
+            type: 'POST',
+            url: '{:url("admin/sensor/getcarpos")}',
+            dataType: 'json',
+            data:{manager:manager},
+            success: function(data){
+               
+                for(i=0;i<data.data.length;i++){
+                        html+='<option value="'+data.data[i].id+'">'+data.data[i].number+'</option>';
+                }
+                $('#carpos').html(html);
+            }
+        });
+    })
+
+       $('#district1').change(function(){
+        var province=$('#province1').val();
+        var city=$('#city1').val();
+        var district=$('#district1').val();
+        var manager=$('#manager').val();
+        var html='';
+        $.ajax({
+            type: 'POST',
+            url: '{:url("admin/user/getscc")}',
+            dataType: 'json',
+            data:{province:province,city:city,district:district,manager:manager},
+            success: function(data){
+               
+                for(i=0;i<data.data.length;i++){
+                        html+='<option value="'+data.data[i].mg_id+'">'+data.data[i].name+'</option>';
+                }
+                $('#manager').html(html);
+                var htm='';
+                var mm=$('#manager').val();
+                $.ajax({
+                    type: 'POST',
+                    url: '{:url("admin/sensor/getcarpos")}',
+                    dataType: 'json',
+                    data:{manager:mm},
+                    success: function(data){
+                       
+                        for(i=0;i<data.data.length;i++){
+                                htm+='<option value="'+data.data[i].id+'">'+data.data[i].number+'</option>';
+                        }
+                        $('#carpos').html(htm);
+                    }
+                });
+            }
+        });
+    })
+
+
+
+
+       $('#city1').change(function(){
+        var province=$('#province1').val();
+        var city=$('#city1').val();
+        var district=$('#district1').val();
+        var manager=$('#manager').val();
+        var html='';
+        $.ajax({
+            type: 'POST',
+            url: '{:url("admin/sensor/getsc")}',
+            dataType: 'json',
+            data:{province:province,city:city,district:district,manager:manager},
+            success: function(data){
+               
+                for(i=0;i<data.data.length;i++){
+                        html+='<option value="'+data.data[i].mg_id+'">'+data.data[i].name+'</option>';
+                }
+                $('#manager').html(html);
+                var htm='';
+                var mm=$('#manager').val();
+                $.ajax({
+                    type: 'POST',
+                    url: '{:url("admin/sensor/getcarpos")}',
+                    dataType: 'json',
+                    data:{manager:mm},
+                    success: function(data){
+                       
+                        for(i=0;i<data.data.length;i++){
+                                htm+='<option value="'+data.data[i].id+'">'+data.data[i].number+'</option>';
+                        }
+                        $('#carpos').html(htm);
+                    }
+                });
+            }
+        });
+    })
+
+       $('#province1').change(function(){
+        var province=$('#province1').val();
+        var city=$('#city1').val();
+        var district=$('#district1').val();
+        var manager=$('#manager').val();
+        var html='';
+        $.ajax({
+            type: 'POST',
+            url: '{:url("admin/sensor/gets")}',
+            dataType: 'json',
+            data:{province:province,city:city,district:district,manager:manager},
+            success: function(data){
+               
+                for(i=0;i<data.data.length;i++){
+                        html+='<option value="'+data.data[i].mg_id+'">'+data.data[i].name+'</option>';
+                }
+                //console.log(html);
+                $('#manager').html(html);
+                var htm='';
+                var mm=$('#manager').val();
+                $.ajax({
+                    type: 'POST',
+                    url: '{:url("admin/sensor/getcarpos")}',
+                    dataType: 'json',
+                    data:{manager:mm},
+                    success: function(data){
+                       
+                        for(i=0;i<data.data.length;i++){
+                                htm+='<option value="'+data.data[i].id+'">'+data.data[i].number+'</option>';
+                        }
+                        $('#carpos').html(htm);
+                    }
+                });
+            }
+        });
+    })
+
+
+        //form表单通过Ajax无刷新方式提交数据给服务器端
+        $('#form-admin-role-add').submit(function(evt){
+            evt.preventDefault();
+            var shuju = $(this).serialize();
+            $.ajax({
+                url:'{:url("admin/sensor/add")}',
+                data:shuju,
+                dataType:'json',
+                type:'post',
+                success:function(msg){
+                    if(msg.status==1){
+                        layer.alert('添加成功', {icon: 6},function(){
+                            //主页面刷新
+                            parent.window.location.href='{:url("admin/sensor/index")}?province='+msg.province+'&city='+msg.city+'&area='+msg.area+'&manager='+msg.manager;
+                            //当前窗口关闭
+                            layer_close();
+                        });
+                    }else if(msg.status==2){
+                        layer.alert('添加成功', {icon: 6},function(){
+                            //主页面刷新
+                            parent.window.location.href=parent.window.location.href;
+                            //当前窗口关闭
+                            layer_close();
+                        });
+                    }else{
+                        layer.alert('添加失败，【'+msg.errorinfo+'】', {icon: 5});
+                    }
+                }
+            });
+        });
+</script>
+<!--/请在上方写此页面业务相关的脚本-->
+    </body>
+</html>

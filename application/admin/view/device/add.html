@@ -1,0 +1,296 @@
+<!--_meta 作为公共模版分离出去-->
+<!DOCTYPE HTML>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="renderer" content="webkit|ie-comp|ie-stand">
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+<meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1.0,maximum-scale=1.0,user-scalable=no" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+<link rel="Bookmark" href="/favicon.ico" >
+<link rel="Shortcut Icon" href="/favicon.ico" />
+<!--[if lt IE 9]>
+<script type="text/javascript" src="{:config('admin_lib')}/html5shiv.js"></script>
+<script type="text/javascript" src="{:config('admin_lib')}/respond.min.js"></script>
+<![endif]-->
+<link rel="stylesheet" type="text/css" href="{:config('admin_static')}/h-ui/css/H-ui.min.css" />
+<link rel="stylesheet" type="text/css" href="{:config('admin_static')}/h-ui.admin/css/H-ui.admin.css" />
+<link rel="stylesheet" type="text/css" href="{:config('admin_lib')}/Hui-iconfont/1.0.8/iconfont.css" />
+<link rel="stylesheet" type="text/css" href="{:config('admin_static')}/h-ui.admin/skin/default/skin.css" id="skin" />
+<link rel="stylesheet" type="text/css" href="{:config('admin_static')}/h-ui.admin/css/style.css" />
+<script type="text/javascript" src="{:config('admin_lib')}/jquery/1.9.1/jquery.min.js"></script> 
+<!--[if IE 6]>
+<script type="text/javascript" src="{:config('admin_lib')}/DD_belatedPNG_0.0.8a-min.js" ></script>
+<script>DD_belatedPNG.fix('*');</script>
+<![endif]-->
+<!--/meta 作为公共模版分离出去-->
+
+<title>新建网站权限 - 管理员管理 - H-ui.admin v3.1</title>
+<meta name="keywords" content="H-ui.admin v3.1,H-ui网站后台模版,后台模版下载,后台管理系统模版,HTML后台模版下载">
+<meta name="description" content="H-ui.admin v3.1，是一款由国人开发的轻量级扁平化网站后台模板，完全免费开源的网站后台管理系统模版，适合中小型CMS后台系统。">
+</head>
+<body>
+<article class="page-container">
+	<form action="" method="post" class="form form-horizontal" id="form-admin-permission-add">
+		<input type="hidden" id="mg_id" name="mg_id" value="{present name='res'}{$res.mg_id}{/present}">
+
+		<div class="row cl">
+			<label class="form-label col-xs-4 col-sm-3"><span class="c-red"></span>设备序列号：</label>
+			<div class="formControls col-xs-8 col-sm-9">
+				<input type="text" class="input-text" value="{present name='res'}{$res.serialno}{/present}"  name="serialno">
+			</div>
+		</div>
+
+		<div class="row cl">
+			<label class="form-label col-xs-4 col-sm-3"><span class="c-red"></span>端口：</label>
+			<div class="formControls col-xs-8 col-sm-9">
+				<input type="text" class="input-text" value="{present name='res'}{$res.port}{/present}"  name="port">
+			</div>
+		</div>
+
+		<div class="row cl">
+			<label class="form-label col-xs-4 col-sm-3"><span class="c-red"></span>类型：</label>
+			<div class="formControls col-xs-8 col-sm-9">
+				<select name="type" id="flag" class="input-text" style="width:150px;">
+                    <option value="">-请选择-</option>
+                    <option value="1">入口</option>
+                    <option value="2">出口</option>
+                </select>
+			</div>
+		</div>
+
+		<div class="row cl">
+			<label class="form-label col-xs-4 col-sm-3"><span class="c-red"></span>所属车场：</label>
+			<div class="formControls col-xs-8 col-sm-9">
+				<div data-toggle="distpicker">
+					<div class="form-group">
+				  		<select data-province="" class="input-text" id='province1' name='province' style='width:150px;'></select>
+				   </div>
+				   <div class="form-group">
+				  		<select data-city="" class="input-text" id='city1' name='city' style='width:150px;'></select>
+				  </div>
+				  <div class="form-group">
+				  		<select data-district="" class="input-text" id='district1' name='area' style='width:150px;'></select>
+				  </div>
+			</div>
+		</div>
+	</div>
+
+		<div class="row cl">
+			<label class="form-label col-xs-4 col-sm-3"><span class="c-red"></span></label>
+			<div class="formControls col-xs-8 col-sm-9">
+				<div class="form-group">
+					<select class="form-control" class="input-text" style='width:150px;height:31px;' id="manager" name="manager">
+					  			
+					</select>
+				</div>
+			</div>
+		</div>
+
+		<div class="row cl">
+			<div class="col-xs-8 col-sm-9 col-xs-offset-4 col-sm-offset-3">
+				<button type="submit" class="btn btn-success radius" id="admin-permission-save" name="admin-permission-save"><i class="icon-ok"></i> 确定</button>
+			</div>
+		</div>
+	</form>
+	<div id="allmap" style="width: 0px; height: 0px"></div>
+</article>
+
+<!--_footer 作为公共模版分离出去-->
+
+<script type="text/javascript" src="{:config('admin_lib')}/layer/2.4/layer.js"></script>
+<script type="text/javascript" src="{:config('admin_static')}/h-ui/js/H-ui.min.js"></script> 
+<script type="text/javascript" src="{:config('admin_static')}/h-ui.admin/js/H-ui.admin.js"></script> <!--/_footer 作为公共模版分离出去-->
+<script src="{:config('plugin')}jQueryDistpicker/js/distpicker.data.js"></script>
+<script src="{:config('plugin')}jQueryDistpicker/js/distpicker.js"></script>
+<script src="{:config('plugin')}jQueryDistpicker/js/main.js"></script>
+<!--请在下方写此页面业务相关的脚本-->
+<script type="text/javascript" src="{:config('admin_lib')}/jquery.validation/1.14.0/jquery.validate.js"></script>
+<script type="text/javascript" src="{:config('admin_lib')}/jquery.validation/1.14.0/validate-methods.js"></script>
+<script type="text/javascript" src="{:config('admin_lib')}/jquery.validation/1.14.0/messages_zh.js"></script>
+<script type="text/javascript" src="http://api.map.baidu.com/api?v=2.0&ak=iVsocq0MFUOHMBI0Wqh4ofsGQU6apKVH"></script>
+<script type="text/javascript">
+$(function(){
+	$(".permission-list dt input:checkbox").click(function(){
+		$(this).closest("dl").find("dd input:checkbox").prop("checked",$(this).prop("checked"));
+	});
+	$(".permission-list2 dd input:checkbox").click(function(){
+		var l =$(this).parent().parent().find("input:checked").length;
+		var l2=$(this).parents(".permission-list").find(".permission-list2 dd").find("input:checked").length;
+		if($(this).prop("checked")){
+			$(this).closest("dl").find("dt input:checkbox").prop("checked",true);
+			$(this).parents(".permission-list").find("dt").first().find("input:checkbox").prop("checked",true);
+		}
+		else{
+			if(l==0){
+				$(this).closest("dl").find("dt input:checkbox").prop("checked",false);
+			}
+			if(l2==0){
+				$(this).parents(".permission-list").find("dt").first().find("input:checkbox").prop("checked",false);
+			}
+		}
+	});
+
+
+	$(function(){
+		var province=$('#province1').val();
+		var city=$('#city1').val();
+		var district=$('#district1').val();
+		var manager=$('#manager').val();
+		var html='';
+		$.ajax({
+			type: 'POST',
+			url: '{:url("admin/user/getscc")}',
+			dataType: 'json',
+			data:{province:province,city:city,district:district,manager:manager},
+			success: function(data){
+				var xx = $('#xx').val();
+				for(i=0;i<data.data.length;i++){
+					if(xx==data.data[i].mg_id){
+						html+='<option selected  value="'+data.data[i].mg_id+'">'+data.data[i].name+'</option>';
+					}else{
+						html+='<option  value="'+data.data[i].mg_id+'">'+data.data[i].name+'</option>';
+					}
+				}
+				$('#manager').html(html);
+			}
+		});
+	})
+
+	$('#district1').change(function(){
+		var province=$('#province1').val();
+		var city=$('#city1').val();
+		var district=$('#district1').val();
+		var manager=$('#manager').val();
+		var html='';
+		$.ajax({
+			type: 'POST',
+			url: '{:url("admin/user/getscc")}',
+			dataType: 'json',
+			data:{province:province,city:city,district:district,manager:manager},
+			success: function(data){
+				var xx = $('#xx').val();
+				for(i=0;i<data.data.length;i++){
+					if(xx==data.data[i].mg_id){
+						html+='<option selected value="'+data.data[i].mg_id+'">'+data.data[i].name+'</option>';
+					}else{
+						html+='<option value="'+data.data[i].mg_id+'">'+data.data[i].name+'</option>';
+					}
+					
+				}
+				$('#manager').html(html);
+			}
+		});
+	})
+
+	$('#city1').change(function(){
+        var province=$('#province1').val();
+        var city=$('#city1').val();
+        var district=$('#district1').val();
+        var manager=$('#manager').val();
+        var html='';
+        $.ajax({
+            type: 'POST',
+            url: '{:url("admin/sensor/getsc")}',
+            dataType: 'json',
+            data:{province:province,city:city,district:district,manager:manager},
+            success: function(data){
+               
+                for(i=0;i<data.data.length;i++){
+                        html+='<option value="'+data.data[i].mg_id+'">'+data.data[i].name+'</option>';
+                }
+                //console.log(html);
+                $('#manager').html(html);
+                var htm='';
+                var mm=$('#manager').val();
+                $.ajax({
+                    type: 'POST',
+                    url: '{:url("admin/sensor/getcarpos")}',
+                    dataType: 'json',
+                    data:{manager:mm},
+                    success: function(data){
+                       
+                        for(i=0;i<data.data.length;i++){
+                                htm+='<option value="'+data.data[i].id+'">'+data.data[i].number+'</option>';
+                        }
+                        //console.log(html);
+                        $('#carpos').html(htm);
+                    }
+                });
+            }
+        });
+    })
+
+       $('#province1').change(function(){
+        var province=$('#province1').val();
+        var city=$('#city1').val();
+        var district=$('#district1').val();
+        var manager=$('#manager').val();
+        var html='';
+        $.ajax({
+            type: 'POST',
+            url: '{:url("admin/sensor/gets")}',
+            dataType: 'json',
+            data:{province:province,city:city,district:district,manager:manager},
+            success: function(data){
+               
+                for(i=0;i<data.data.length;i++){
+                        html+='<option value="'+data.data[i].mg_id+'">'+data.data[i].name+'</option>';
+                }
+                //console.log(html);
+                $('#manager').html(html);
+                var htm='';
+                var mm=$('#manager').val();
+                $.ajax({
+                    type: 'POST',
+                    url: '{:url("admin/sensor/getcarpos")}',
+                    dataType: 'json',
+                    data:{manager:mm},
+                    success: function(data){
+                       
+                        for(i=0;i<data.data.length;i++){
+                                htm+='<option value="'+data.data[i].id+'">'+data.data[i].number+'</option>';
+                        }
+                        //console.log(html);
+                        $('#carpos').html(htm);
+                    }
+                });
+            }
+        });
+    })
+
+
+	//form表单通过Ajax无刷新方式提交数据给服务器端
+	$('#form-admin-permission-add').submit(function(evt){
+	    //阻止浏览器默认的form表单提交
+		evt.preventDefault();
+		//收集form表单的信息,下述serialize()收集的信息传递给服务器端的时候与传统form表单提交的效果一致
+		var shuju = $(this).serialize();  //字符串  name=val&name=val&name=val...
+
+		//var manager=$('#manager').val();alert(manager)
+		//走Ajax
+		$.ajax({
+			url:'{:url("admin/device/add")}',
+			data:shuju,
+			dataType:'json',
+			type:'post',
+			success:function(msg){
+				//console.log(msg.status);
+                if(msg.status=='success'){
+                    layer.alert('添加成功', {icon: 6},function(){
+                        //主页面刷新
+                        parent.window.location.href='{:url("admin/device/index")}?province='+msg.province+'&city='+msg.city+'&area='+msg.area;
+                        //当前窗口关闭
+                        layer_close();//本身的H-ui.admin.js封装的
+                    });
+                }else{
+                    layer.alert('添加失败，【'+msg.errorinfo+'】', {icon: 5});
+                }
+			}
+		});
+	});
+});
+</script>
+<!--/请在上方写此页面业务相关的脚本-->
+</body>
+</html>

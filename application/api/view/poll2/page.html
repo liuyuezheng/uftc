@@ -1,0 +1,156 @@
+<!DOCTYPE html>
+<!-- saved from url=(0055)http://www.jq22.com/demo/jQuery-tp20160308/content.html -->
+<html class="">
+<!--<![endif]-->
+
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>投票</title>
+  <link href="css/boilerplate.css" rel="stylesheet" type="text/css">
+  <link href="css/style.css" rel="stylesheet" type="text/css">
+  <link href="css/sweet-alert.css" rel="stylesheet" type="text/css">
+  <!--[if lt IE 9]>
+  <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+  <![endif]-->
+  <script src="js/respond.min.js"></script>
+  <script src="js/sweet-alert.min.js"></script>
+  <script src="js/jquery.min.js" type="text/javascript" charset="utf-8"></script>
+</head>
+<style type="text/css">
+  .t1 {
+    margin-top: 10px;
+  }
+
+  .content_list_li_left {
+    margin-top: 40px;
+  }
+
+  .on {
+    display: none;
+  }
+</style>
+<body style="background:#c30d23">
+<div id="audio_btn" class="video_exist off play_yinfu" style="display: block;">
+  <div id="yinfu" class="rotate"></div>
+  <audio loop="" src="music/bg_2.mp3" id="media" autoplay="" preload="preload"></audio>
+</div>
+<div id="content_title1" class="fluid clearfix">
+  <div class="content_title">
+    参与投票
+  </div>
+</div>
+<div class="clearfix"></div>
+<div id="content">
+  <!--内容-->
+  <!--<div id="content_list" class="gridContainer clearfix bounceInDown animated">
+    <div class="content_list_li">
+      <div class="content_list_li_left">
+        <span><img src="img/img.jpg"></span>
+      </div>
+      <div class="content_list_li_right">
+        <div class="content_list_li_right_li"><strong>编号：</strong>001</div>
+        <div class="content_list_li_right_li"><strong>节目名称：</strong>张岱</div>
+        <div class="content_list_li_right_li_a">
+          <a class="btn to t1" onclick="swal(&#39;投票成功!&#39;, &#39;非常感谢,么么哒！&#39;, &#39;success&#39;)">投我吧</a>
+          <a class="btn to on" onclick="swal(&#39;您已为我投票，非常感谢！&#39;)">已投票</a>
+        </div>
+      </div>
+      <div class="clearfix"></div>
+    </div>
+  </div>-->
+</div>
+<div class="clearfix" style="height:2em;"></div>
+</body>
+<script type="text/javascript">
+  var name = getUrlParamCN('name');
+
+  function getUrlParamCN(name) {
+    var reg = new RegExp("(^|&)" + name + "=([^&]*)(&|$)"); //构造一个含有目标参数的正则表达式对象
+    var r = decodeURI(window.location.search).substr(1).match(reg); //匹配目标参数
+    if (r != null) return unescape(r[2]);
+    return null; //返回参数值
+  }
+
+  var obj = [{
+    id: "1",
+    name: "舞蹈串烧",
+    uname: "市场二部",
+    img: "img/img1.jpg"
+  }, {
+    id: "2",
+    name: "年三十",
+    uname: "技术部前端",
+    img: "img/img2.jpg"
+  }, {
+    id: "3",
+    name: "小手拉大手",
+    uname: "设计部",
+    img: "img/img3.jpg"
+  }, {
+    id: "4",
+    name: "雷人舞",
+    uname: "技术部后端",
+    img: "img/img4.jpg"
+  }, {
+    id: "5",
+    name: "夏洛特的烦恼",
+    uname: "市场一部",
+    img: "img/img5.jpg"
+  }];
+  var html = '';
+  for (var i = 0; i < obj.length; i++) {
+    html += '<div id="content_list" class="gridContainer clearfix bounceInDown animated">' +
+      '<div class="content_list_li">' +
+
+      '<div class="content_list_li_right">' +
+      '<div class="content_list_li_right_li"><strong>序号：</strong>' + obj[i].id + '</div>' +
+      '<div class="content_list_li_right_li"><strong>部门：</strong>' + obj[i].uname + '</div>' +
+      '<div class="content_list_li_right_li"><strong>节目名称：</strong>' + obj[i].name + '</div>' +
+      '<div class="content_list_li_right_li_a">' +
+      '<a class="btn to t1" data="0" data-title="'+obj[i].name+'">最佳人气奖</a>' +
+      '<a class="btn to t1" data="1" data-title="'+obj[i].name+'">最佳表演奖</a>' +
+      '<a class="btn to t1" data="2" data-title="'+obj[i].name+'">最佳创意奖</a>' +
+      '<a class="btn to on" ></a>' +
+      '</div>' +
+      '</div>' +
+      '<div class="content_list_li_left">' +
+      '<span><img src=' + obj[i].img + '></span>' +
+      '</div>' +
+      '<div class="clearfix"></div>' +
+      '</div>' +
+      '</div>';
+  }
+  ;
+  $('#content').html(html);
+  //投票内容
+  $('body').on('click', '.t1', function () {
+    var _text = $(this).text();//获奖内容
+    var _data = $(this).attr('data');//已投票内容
+    var _title = $(this).attr('data-title');//获取节目名字
+    var that = $(this);
+    $.ajax({
+      type: "GET",
+      url: "http://park.mumarenkj.com/api/poll/pollPro",
+      data: {proName: _title, awardName: _text, name: name},
+      success: function (res) {
+        console.log(res);
+        that.parent('.content_list_li_right_li_a').find('.t1').css('display', 'none');
+        that.parent('.content_list_li_right_li_a').find('.on').css('display', 'block');
+        that.parent('.content_list_li_right_li_a').find('.on').text("已投票" + _text);
+        //循环判断是否投票
+        $('body,.t1').each(function () {
+          if ($(this).attr('data') == _data) {
+            $(this).css('display', 'none');
+          };
+        });
+        swal("投票成功", "非常感谢,么么哒！", "success");
+      }
+    })
+
+  })
+
+
+</script>
+</html>
